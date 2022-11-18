@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>durkesh kumar project</title>
+<head>
+<body>
+<h1>
+USER MANAGEMENT USING PYTHON FLASK AND MYSQL
+<h4>
+    {% with messages=get_flashed_messages() %}
+       {% if messages %}
+            {% for message in messages%}
+                {{message}}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</h4>
+<!-- adduser is a function from app.py -->
+<p><a href="{{url_for('addusers')}}">ADD USERS</a></p>
+</h1>
+<table>
+    <tr>
+        <th>ID </th>
+        <th>NAME </th>
+        <th>AGE</th>
+        <th>CITY</th>
+        <th>EDIT</th>
+        <th>DELETE</th>
+        {% for i in data: %}
+        <tr>
+            <td>{{i.ID}}</td>
+            <td>{{i.NAME}}</td>
+            <td>{{i.AGE}}</td>
+            <td>{{i.CITY}}</td>
+            <td><a href="{{url_for('edituser',id=i.ID)}}">Edit</a></td>
+            <td><a onClick="return confirm('are you sure to delete?');" href="{{url_for('deleteuser',id=i.ID)}}">DELETE</a></td>
+            
+        </tr>
+        {% endfor %}
+    </tr>
+    
+</table>
+
+</body>
+</html>
